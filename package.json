@@ -1,0 +1,70 @@
+{
+  "name": "generator-coffee-react",
+  "version": "0.0.0",
+  "description":
+    "A simple project using create-react-app, coffeescript, and a custom version of react-hyperscript-helpers.",
+  "homepage": "",
+  "author": {
+    "name": "Jim Hessin",
+    "email": "jhessin@gmail.com",
+    "url": "grillbrickstudios.com"
+  },
+  "files": ["generators"],
+  "main": "generators/index.js",
+  "keywords": ["react coffeescript hyperscript", "yeoman-generator"],
+  "peerDependencies": {
+    "create-react-app": "*"
+  },
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "^4.1.0",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-config-xo": "^0.18.2",
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
+    "jest": "^22.0.6",
+    "lint-staged": "^4.2.1",
+    "nsp": "^2.6.3",
+    "prettier": "^1.7.0",
+    "yeoman-assert": "^3.1.0",
+    "yeoman-test": "^1.7.0"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "deep-extend": "^0.5.0",
+    "yeoman-generator": "^2.0.1",
+    "yosay": "^2.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint .",
+    "precommit": "lint-staged",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
+  },
+  "eslintConfig": {
+    "extends": ["xo", "prettier"],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
+    },
+    "plugins": ["prettier"]
+  },
+  "repository": "jhessin/generator-coffee-react",
+  "license": "MIT"
+}
