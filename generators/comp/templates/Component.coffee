@@ -3,8 +3,9 @@ import { Component } from 'react'
 import { div, p, hh } from '@jhessin/react-hyperscript-helpers'
 
 export <%=componentName%> = hh class extends Component
-  state: {}
+  @propTypes: {}
   @defaultProps: {}
+  state: {}
 
   render: ->
     div ".someClass",
