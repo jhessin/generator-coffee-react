@@ -2,6 +2,7 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const extend = require('deep-extend');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -56,46 +57,41 @@ module.exports = class extends Generator {
     this.destinationRoot(this.destinationPath(this.props.appname));
     this.log(chalk.green('DONE!'));
 
-    // This.log(chalk.blue('reading package.json...'));
-    // const pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
-    // this.log(chalk.green('DONE!'));
     this.log(chalk.blue('Updating package.json...'));
-    this.fs.extendJSON(this.destinationPath('package.json'), {
+    const pkg = this.fs.readJSON(this.destinationPath('package.json'));
+    extend(pkg, {
       scripts: {
         start: 'coffee -o src/ -cbw cs/ & react-scripts start',
         build: 'coffee -o src/ -cb cs/ & react-scripts build'
+      },
+      dependencies: {
+        '@jhessin/react-hyperscript-helpers': 'latest'
+      },
+      devDependencies: {
+        coffeescript: 'latest',
+        coffeelint: 'latest'
       }
     });
 
-    // This.log(chalk.blue('writing changes...'));
-    // This.fs.writeJSON(this.destinationPath('package.json'), pkg);
+    // This.fs.delete(this.destinationPath('package.json'));
+
+    this.spawnCommandSync('rm', ['package.json']);
+
+    this.fs.writeJSON(this.destinationPath('package.json'), pkg);
+
     this.log(chalk.green('DONE!'));
   }
 
   install() {
     this.log(chalk.blue('installing dependencies...'));
-    this.spawnCommandSync(
-      'yarn',
-      [
-        'add',
-        '@jhessin/react-hyperscript-helpers'
-      ] /* {
-      cwd: this.destinationRoot()
-    } */
-    );
 
-    this.spawnCommandSync(
-      'yarn',
-      [
-        'add',
-        '--dev',
-        'coffeescript',
-        'coffeelint'
-      ] /* {
-      cwd: this.destinationRoot()
-    } */
-    );
-
-    this.log(chalk.green('ALL DONE! Get Cracking!'));
+    this.yarnInstall().then(error => {
+      if (error) {
+        this.npmInstall().then(() => {
+          if (error) this.log(chalk.red(error));
+          else this.log(chalk.green('ALL DONE! Get Cracking!'));
+        });
+      } else this.log(chalk.green('ALL DONE! Get Cracking!'));
+    });
   }
 };
