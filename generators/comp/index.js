@@ -29,7 +29,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'path',
         message: 'Where would you like the component?',
-        default: this.options.path || this.destinationRoot()
+        default: this.options.path || 'src/components'
       }
     ]).then(props => {
       this.props = props;
@@ -46,5 +46,19 @@ module.exports = class extends Generator {
       this.destinationPath(this.props.componentName + '.coffee'),
       this.props
     );
+
+    if (this.fs.exists('index.coffee')) {
+      this.log(chalk.green('Adding to index.coffee file. Please confirm...'));
+      this.fs.append(
+        this.destinationPath('index.coffee'),
+        `export * from './${this.props.componentName}'`
+      );
+    } else {
+      this.fs.copyTpl(
+        this.templatePath('index.coffee'),
+        this.destinationPath('index.coffee'),
+        this.props
+      );
+    }
   }
 };

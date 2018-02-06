@@ -2,10 +2,8 @@
 import { Component } from 'react'
 import { div, p, hh } from '@jhessin/react-hyperscript-helpers'
 
-class <%= componentName%> extends Component
+export <%=componentName%> = hh class extends Component
   render: ->
     div ".someClass",
       p ".App-intro",
         'This is the <%= componentName %> component!'
-
-export default hh(<%= componentName%>)
