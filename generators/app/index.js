@@ -62,7 +62,8 @@ module.exports = class extends Generator {
     extend(pkg, {
       scripts: {
         start: 'coffee -o src/ -cbw cs/ & react-scripts start',
-        build: 'coffee -o src/ -cb cs/ & react-scripts build'
+        build: 'coffee -o src/ -cb cs/ & react-scripts build',
+        comp: 'yo coffee-react:comp'
       },
       dependencies: {
         '@jhessin/react-hyperscript-helpers': 'latest'

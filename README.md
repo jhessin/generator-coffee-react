@@ -57,10 +57,22 @@ Change directory into your project and run `yarn start` or `npm start`. This scr
 To create other component you should use the coffee-react:comp generator like this:
 
 ```bash
-yo coffee-react:comp
+yarn comp
+```
+
+or
+
+```bash
+npx comp
 ```
 
 The benefit of the intermediate compiling being done here is you don't need to include the .coffee extension in your imports (not it isn't done in index.coffee). This is automatically translated when your files are copied into JS.
+
+You can also run this straight from the command line. like so:
+
+```bash
+yarn comp path/to/components ComponentName
+```
 
 If you need to use any library components you can just use the `h` function from my `react-hyperscript-helpers` library like so:
 
