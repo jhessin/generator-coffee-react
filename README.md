@@ -8,6 +8,8 @@
 
 [Installation](#installation)
 
+[Usage](#usage)
+
 [Related Projects](#related-projects)
 
 [Known Issues](#known-issues)
@@ -22,7 +24,7 @@
 
 First, install [Yeoman](http://yeoman.io) and generator-coffee-react using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
-This generator also depends on the create-react-app also available on npm
+This generator also depends on the create-react-app also available on npm.
 
 ```bash
 npm install -g yo create-react-app generator-coffee-react
@@ -48,6 +50,50 @@ yo coffee-react my-app-name
 
 Keep in mind this will be fed to create-react-app and will need to support it's naming conventions (no-caps, etc.).
 
+## Usage
+
+Change directory into your project and run `yarn start` or `npm start`. This script will automatically compile all the coffeescript files in the cs folder and place them in the src folder where they are then served up by the react native live server. Press control-C to quit.
+
+To create other component you should use the coffee-react:comp generator like this:
+
+```bash
+yo coffee-react:comp
+```
+
+The benefit of the intermediate compiling being done here is you don't need to include the .coffee extension in your imports (not it isn't done in index.coffee). This is automatically translated when your files are copied into JS.
+
+If you need to use any library components you can just use the `h` function from my `react-hyperscript-helpers` library like so:
+
+```coffeescript
+### eslint-disable import/first ###
+import { Component } from 'react'
+import {
+  div, header, img,
+  h1, p, code, h, hh
+} from '@jhessin/react-hyperscript-helpers'
+
+import LibraryComponent from 'SomeReactLibrary'
+import logo from './logo.svg'
+import './App.css'
+
+class App extends Component
+  render: ->
+    div ".App",
+      header ".App-header",
+        img ".App-logo",
+          src: logo
+          alt: "logo"
+        h1 ".App-title",
+          'Welcome to React'
+      p ".App-intro",
+        'To get started, edit '
+        code 'src/App.js'
+        ' and save to reload.'
+      h LibraryComponent
+
+export default hh(App)
+```
+
 ## Related projects
 
 * [create-react-app](https://github.com/facebook/create-react-app)
@@ -57,8 +103,9 @@ Keep in mind this will be fed to create-react-app and will need to support it's 
 
 ## Known Issues
 
-* [ ] Currently only works with Yarn. I should be able to work this out shortly.
-* [ ] You will be prompted to overwrite your `package.json` file. This is a limitation of Yeoman as there is no way to update the file once `create-react-app` creates it.
+* [x] ~~Currently only works with Yarn. I should be able to work this out shortly.~~
+* [x] ~~You will be prompted to overwrite your `package.json` file. This is a limitation of Yeoman as there is no way to update the file once `create-react-app` creates it.~~
+  # :smile:None?!?:smile::thumbsup:
 
 ## Getting To Know Yeoman
 

@@ -8,4 +8,4 @@ class <%= componentName%> extends Component
       p ".App-intro",
         'This is the <%= componentName %> component!'
 
-export default hh(App)
+export default hh(<%= componentName%>)
