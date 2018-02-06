@@ -2,7 +2,6 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const extend = require('deep-extend');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -38,7 +37,11 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    this.log(`Creating ${chalk.green(this.props.appname)} using create-react-app...`);
+    this.log(
+      `Creating ${chalk.green(this.props.appname)} using ${chalk.green(
+        'create-react-app...'
+      )}`
+    );
 
     this.spawnCommandSync('create-react-app', [this.props.appname]);
 
@@ -53,19 +56,19 @@ module.exports = class extends Generator {
     this.destinationRoot(this.destinationPath(this.props.appname));
     this.log(chalk.green('DONE!'));
 
-    this.log(chalk.blue('reading package.json...'));
-    const pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
-    this.log(chalk.green('DONE!'));
-
-    extend(pkg, {
+    // This.log(chalk.blue('reading package.json...'));
+    // const pkg = this.fs.readJSON(this.destinationPath('package.json'), {});
+    // this.log(chalk.green('DONE!'));
+    this.log(chalk.blue('Updating package.json...'));
+    this.fs.extendJSON(this.destinationPath('package.json'), {
       scripts: {
         start: 'coffee -o src/ -cbw cs/ & react-scripts start',
         build: 'coffee -o src/ -cb cs/ & react-scripts build'
       }
     });
 
-    this.log(chalk.blue('writing changes...'));
-    this.fs.writeJSON(this.destinationPath('package.json'), pkg);
+    // This.log(chalk.blue('writing changes...'));
+    // This.fs.writeJSON(this.destinationPath('package.json'), pkg);
     this.log(chalk.green('DONE!'));
   }
 
@@ -77,7 +80,7 @@ module.exports = class extends Generator {
         'add',
         '@jhessin/react-hyperscript-helpers'
       ] /* {
-      cwd: this.destinationPath(this.props.appname)
+      cwd: this.destinationRoot()
     } */
     );
 
@@ -89,7 +92,7 @@ module.exports = class extends Generator {
         'coffeescript',
         'coffeelint'
       ] /* {
-      cwd: this.destinationPath(this.props.appname)
+      cwd: this.destinationRoot()
     } */
     );
 
