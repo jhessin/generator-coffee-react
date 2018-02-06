@@ -11,7 +11,7 @@
   },
   "files": ["generators"],
   "main": "generators/index.js",
-  "keywords": ["react coffeescript hyperscript", "yeoman-generator"],
+  "keywords": ["react", "coffeescript", "hyperscript", "yeoman-generator"],
   "peerDependencies": {
     "create-react-app": "*"
   },
