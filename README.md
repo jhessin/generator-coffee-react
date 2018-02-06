@@ -6,15 +6,15 @@
 
 # Table of Contents
 
-### [Installation](#installation)
+[Installation](#installation)
 
-### [Related Projects](#related-projects)
+[Related Projects](#related-projects)
 
-### [Known Issues](#known-issues)
+[Known Issues](#known-issues)
 
-### [Getting To Know Yeoman](#getting-to-know-yeoman)
+[Getting To Know Yeoman](#getting-to-know-yeoman)
 
-### [License](#license)
+[License](#license)
 
 ---
 
