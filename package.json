@@ -1,6 +1,6 @@
 {
   "name": "generator-coffee-react",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description":
     "A simple project using create-react-app, coffeescript, and a custom version of react-hyperscript-helpers.",
   "homepage": "",

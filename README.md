@@ -2,8 +2,6 @@
 
 > A simple project using create-react-app, coffeescript, and a custom version of react-hyperscript-helpers.
 
-**NOTE:** This package is not on npm yet so the installation instructions will not work. If you want to use it you need to clone it and then either run `yarn global link` or `npm -g link` from inside the created directory. Then install yeoman and create-react-app globally as instructed below.
-
 # Table of Contents
 
 [Installation](#installation)
