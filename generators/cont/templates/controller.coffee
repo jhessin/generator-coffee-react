@@ -1,3 +1,5 @@
 ### eslint-disable import/first ###
 
-export <%=controllerName%> = {}
+<%=controllerName%> = {}
+
+export { <%=controllerName%> }
