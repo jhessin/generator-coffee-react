@@ -69,7 +69,13 @@ The benefit of the intermediate compiling being done here is you don't need to i
 You can also run this straight from the command line. like so:
 
 ```bash
-yarn comp path/to/components ComponentName
+yarn comp ComponentName
+```
+
+This will generated the component ComponentName and add it to `cs/components` by default and create a reference in `cs/components/index.coffee` so you can simply do this in your App.coffee file.
+
+```coffeescript
+import { ComponentName } from './components'
 ```
 
 If you need to use any library components you can just use the `h` function from my `react-hyperscript-helpers` library like so:
@@ -86,7 +92,7 @@ import LibraryComponent from 'SomeReactLibrary'
 import logo from './logo.svg'
 import './App.css'
 
-class App extends Component
+export App = hh(class extends Component
   render: ->
     div ".App",
       header ".App-header",
@@ -100,8 +106,7 @@ class App extends Component
         code 'src/App.js'
         ' and save to reload.'
       h LibraryComponent
-
-export default hh(App)
+)
 ```
 
 ## Related projects
@@ -116,6 +121,11 @@ export default hh(App)
 * [x] ~~Currently only works with Yarn. I should be able to work this out shortly.~~
 * [x] ~~You will be prompted to overwrite your `package.json` file. This is a limitation of Yeoman as there is no way to update the file once `create-react-app` creates it.~~
   # :smile:None?!?:smile::thumbsup:
+
+## Future Plans
+
+* [ ] Adding support for react native with a --native option.
+* [ ] Add generators for linking to my favorite libraries.
 
 ## Getting To Know Yeoman
 

@@ -3,18 +3,21 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 
+const DEFAULT_PATH = 'cs/components';
+
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
-    this.argument('path', { type: String, required: false });
-
     this.argument('componentName', { type: String, required: false });
+
+    this.argument('path', { type: String, required: false });
   }
 
   prompting() {
-    if (this.options.componentName && this.options.path) {
-      this.props = this.options;
+    if (this.options.componentName) {
+      if (this.options.path) this.props = this.options;
+      else this.props = { ...this.options, path: DEFAULT_PATH };
       return;
     }
 
@@ -29,7 +32,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'path',
         message: 'Where would you like the component?',
-        default: this.options.path || 'cs/components'
+        default: this.options.path || DEFAULT_PATH
       }
     ]).then(props => {
       this.props = props;
