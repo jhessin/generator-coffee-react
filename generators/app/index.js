@@ -4,6 +4,22 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const extend = require('deep-extend');
 
+const pkgPlus = {
+  scripts: {
+    start: 'coffee -o src/ -cbw cs/ & react-scripts start',
+    build: 'coffee -o src/ -cb cs/ & react-scripts build',
+    comp: 'yo coffee-react:comp',
+    cont: 'yo coffee-react:cont'
+  },
+  dependencies: {
+    '@jhessin/react-hyperscript-helpers': 'latest'
+  },
+  devDependencies: {
+    coffeescript: 'latest',
+    coffeelint: 'latest'
+  }
+};
+
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
@@ -59,22 +75,7 @@ module.exports = class extends Generator {
 
     this.log(chalk.blue('Updating package.json...'));
     const pkg = this.fs.readJSON(this.destinationPath('package.json'));
-    extend(pkg, {
-      scripts: {
-        start: 'coffee -o src/ -cbw cs/ & react-scripts start',
-        build: 'coffee -o src/ -cb cs/ & react-scripts build',
-        comp: 'yo coffee-react:comp'
-      },
-      dependencies: {
-        '@jhessin/react-hyperscript-helpers': 'latest'
-      },
-      devDependencies: {
-        coffeescript: 'latest',
-        coffeelint: 'latest'
-      }
-    });
-
-    // This.fs.delete(this.destinationPath('package.json'));
+    extend(pkg, pkgPlus);
 
     this.spawnCommandSync('rm', ['package.json']);
 

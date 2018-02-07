@@ -12,6 +12,8 @@
 
 [Known Issues](#known-issues)
 
+[Future Plans / ToDo](#future-plans)
+
 [Getting To Know Yeoman](#getting-to-know-yeoman)
 
 [License](#license)
@@ -109,6 +111,14 @@ export App = hh(class extends Component
 )
 ```
 
+There is also a similar method of adding a controller model with all the same options:
+
+```bash
+yarn cont myController
+```
+
+This creates `myController.coffee` in the `cs/controllers` folder and adds it to `cs/controllers/index.coffee` for you.
+
 ## Related projects
 
 * [create-react-app](https://github.com/facebook/create-react-app)
@@ -126,6 +136,7 @@ export App = hh(class extends Component
 
 * [ ] Adding support for react native with a --native option.
 * [ ] Add generators for linking to my favorite libraries.
+* [ ] Test this thing on windows.
 
 ## Getting To Know Yeoman
 
