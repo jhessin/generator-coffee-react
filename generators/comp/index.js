@@ -29,7 +29,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'path',
         message: 'Where would you like the component?',
-        default: this.options.path || 'src/components'
+        default: this.options.path || 'cs/components'
       }
     ]).then(props => {
       this.props = props;
