@@ -6,8 +6,8 @@ const extend = require('deep-extend');
 
 const pkgPlus = {
   scripts: {
-    start: 'coffee -o src/ -cbw cs/ & react-scripts start',
-    build: 'coffee -o src/ -cb cs/ & react-scripts build',
+    start: 'cake start',
+    build: 'cake build',
     comp: 'yo coffee-react:comp',
     cont: 'yo coffee-react:cont'
   },
@@ -78,6 +78,7 @@ module.exports = class extends Generator {
       this.templatePath('.build-tools.cson'),
       this.destinationPath('.build-tools.cson')
     );
+    this.fs.copy(this.templatePath('Cakefile'), this.destinationPath('Cakefile'));
     this.log(chalk.green('DONE!'));
 
     this.log(chalk.blue('Updating package.json...'));

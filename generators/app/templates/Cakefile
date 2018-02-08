@@ -1,0 +1,44 @@
+fs = require 'fs'
+
+{spawn} = require 'child_process'
+
+build = (callback) ->
+  coffee = spawn 'coffee', ['-cb', '-o', 'src', 'cs']
+  coffee.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  coffee.stdout.on 'data', (data) ->
+    console.log data.toString()
+  coffee.on 'exit', (code) ->
+    if code is 0
+      callback?()
+      react = spawn 'react-scripts', ['build']
+      react.stderr.on 'data', (data) ->
+        process.stderr.write data.toString()
+      react.stdout.on 'data', (data) ->
+        console.log data.toString()
+      react.on 'exit', (code) ->
+        callback?() if code is 0
+
+start = (callback) ->
+  # start watching coffeescripts
+  coffee = spawn 'coffee', ['-cbw', '-o', 'src', 'cs']
+  coffee.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  coffee.stdout.on 'data', (data) ->
+    console.log data.toString()
+  coffee.on 'exit', (code) ->
+    callback?() if code is 0
+
+  # start watching javascripts
+  react = spawn 'react-scripts', ['start']
+  react.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  react.stdout.on 'data', (data) ->
+    console.log data.toString()
+  react.on 'exit', (code) ->
+    callback?() if code is 0
+
+task 'build', 'Build src/ from cs/', ->
+  build()
+task 'start', 'Watch src/ and compile into cs/', ->
+  start()
