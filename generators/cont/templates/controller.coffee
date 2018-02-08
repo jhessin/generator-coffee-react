@@ -1,4 +1,6 @@
-### eslint-disable import/first ###
+###   eslint-disable import/first   ###
+# ^^^ Required for React's Linter ^^^ #
+###^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^###
 
 <%=controllerName%> = {}
 

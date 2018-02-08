@@ -1,10 +1,12 @@
-### eslint-disable import/first ###
+###   eslint-disable import/first   ###
+# ^^^ Required for React's Linter ^^^ #
+###^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^###
 import { Component } from 'react'
 import { PropTypes } from 'prop-types'
 
 import { div, p, hh } from '@jhessin/react-hyperscript-helpers'
 
-export <%=componentName%> = hh class extends Component
+<%=componentName%> = hh class <%=componentName%> extends Component
   @propTypes: {}
   @defaultProps: {}
   state: {}
@@ -13,3 +15,5 @@ export <%=componentName%> = hh class extends Component
     div ".someClass",
       p ".App-intro",
         'This is the <%= componentName %> component!'
+
+export { <%=componentName%> }
