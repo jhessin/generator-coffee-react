@@ -2,25 +2,32 @@
 # ^^^ Required for React's Linter ^^^ #
 ###^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^###
 import { Component } from 'react'
-import {
-  div, header, img,
-  h1, p, code, hh
-} from '@jhessin/react-hyperscript-helpers'
+# import { PropTypes } from 'prop-types'
+import { h } from '@jhessin/react-hyperscript-helpers'
 import logo from './logo.svg'
 import './App.css'
 
 class App extends Component
+  @propTypes: {}
+  @defaultProps: {}
+  state: {}
+
   render: ->
-    div ".App",
-      header ".App-header",
-        img ".App-logo",
+    h 'div',
+      '.App'
+      h 'header',
+        '.App-header'
+        h 'img',
+          '.App-logo'
           src: logo
-          alt: "logo"
-        h1 ".App-title",
+          alt: 'logo'
+        h 'h1',
+          '.App-title'
           'Welcome to React'
-      p ".App-intro",
+      h 'p',
+        '.App-intro'
         'To get started, edit '
-        code 'cs/App.coffee'
+        h 'code', 'cs/App.coffee'
         ' and save to reload.'
 
-export default hh(App)
+export default App

@@ -1,0 +1,51 @@
+providers: [
+  {
+    key: "bt"
+    config:
+      commands: [
+        {
+          project: "/Users/jameshessin/Local Documents/websites/bbl"
+          source: "/Users/jameshessin/Local Documents/websites/bbl/.build-tools.cson"
+          name: "Start dev server"
+          command: "yarn start"
+          wd: "."
+          env: {}
+          modifier: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: true
+              stdin: false
+          version: 2
+        }
+        {
+          project: "/Users/jameshessin/Local Documents/websites/bbl"
+          source: "/Users/jameshessin/Local Documents/websites/bbl/.build-tools.cson"
+          name: "Stop Dev Server"
+          command: "killall node"
+          wd: "."
+          env: {}
+          modifier: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output: {}
+          version: 2
+        }
+      ]
+  }
+]

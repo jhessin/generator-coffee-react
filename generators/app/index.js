@@ -73,6 +73,13 @@ module.exports = class extends Generator {
     this.destinationRoot(this.destinationPath(this.props.appname));
     this.log(chalk.green('DONE!'));
 
+    this.log(chalk.blue('copying some extra goodies...'));
+    this.fs.copy(
+      this.templatePath('.build-tools.cson'),
+      this.destinationPath('.build-tools.cson')
+    );
+    this.log(chalk.green('DONE!'));
+
     this.log(chalk.blue('Updating package.json...'));
     const pkg = this.fs.readJSON(this.destinationPath('package.json'));
     extend(pkg, pkgPlus);

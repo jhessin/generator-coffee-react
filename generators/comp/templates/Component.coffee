@@ -2,11 +2,11 @@
 # ^^^ Required for React's Linter ^^^ #
 ###^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^###
 import { Component } from 'react'
-import { PropTypes } from 'prop-types'
+# import { PropTypes } from 'prop-types'
 
-import { div, p, hh } from '@jhessin/react-hyperscript-helpers'
+import { div, p } from '@jhessin/react-hyperscript-helpers'
 
-<%=componentName%> = hh class <%=componentName%> extends Component
+class <%=componentName%> extends Component
   @propTypes: {}
   @defaultProps: {}
   state: {}
