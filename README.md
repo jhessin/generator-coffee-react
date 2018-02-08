@@ -82,33 +82,27 @@ import { ComponentName } from './components'
 
 If you need to use any library components you can just use the `h` function from my `react-hyperscript-helpers` library like so:
 
+### NOTE: This has become the default method of accessing classes as of v0.0.9. It tends to be less error prone as the first line is always the same `h componentName,`. The former way of wrapping the component in `hh` is still valid and available.
+
 ```coffeescript
-### eslint-disable import/first ###
-import { Component } from 'react'
-import {
-  div, header, img,
-  h1, p, code, h, hh
-} from '@jhessin/react-hyperscript-helpers'
-
-import LibraryComponent from 'SomeReactLibrary'
-import logo from './logo.svg'
-import './App.css'
-
-export App = hh(class extends Component
-  render: ->
-    div ".App",
-      header ".App-header",
-        img ".App-logo",
-          src: logo
-          alt: "logo"
-        h1 ".App-title",
-          'Welcome to React'
-      p ".App-intro",
-        'To get started, edit '
-        code 'src/App.js'
-        ' and save to reload.'
-      h LibraryComponent
-)
+render: ->
+  h 'div',
+    '.App'
+    h 'header',
+      '.App-header'
+      h 'img',
+        '.App-logo'
+        src: logo
+        alt: 'logo'
+      h 'h1',
+        '.App-title'
+        'Welcome to React'
+    h 'p',
+      '.App-intro'
+      'To get started, edit '
+      h 'code', 'cs/App.coffee'
+      ' and save to reload.'
+    h LibraryComponent
 ```
 
 There is also a similar method of adding a controller model with all the same options:
