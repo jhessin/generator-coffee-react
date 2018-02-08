@@ -82,7 +82,9 @@ import { ComponentName } from './components'
 
 If you need to use any library components you can just use the `h` function from my `react-hyperscript-helpers` library like so:
 
-### NOTE: This has become the default method of accessing classes as of v0.0.9. It tends to be less error prone as the first line is always the same `h componentName,`. The former way of wrapping the component in `hh` is still valid and available.
+> ### NOTE:
+>
+> This has become the default method of accessing classes as of v0.0.9. It tends to be less error prone as the first line is always the same `h componentName,`. The former way of wrapping the component in `hh` is still valid and available.
 
 ```coffeescript
 render: ->
