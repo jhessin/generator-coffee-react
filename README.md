@@ -50,6 +50,8 @@ yo coffee-react my-app-name
 
 Keep in mind this will be fed to create-react-app and will need to support it's naming conventions (no-caps, etc.).
 
+Because it uses create-react-app a new folder is always created for you (don't let yeoman's warning message fool you.)
+
 ## Usage
 
 Change directory into your project and run `yarn start` or `npm start`. This script will automatically compile all the coffeescript files in the cs folder and place them in the src folder where they are then served up by the react native live server. Press control-C to quit.
@@ -84,7 +86,7 @@ If you need to use any library components you can just use the `h` function from
 
 > ### NOTE:
 >
-> This has become the default method of accessing classes as of v0.0.9. It tends to be less error prone as the first line is always the same `h componentName,`. The former way of wrapping the component in `hh` is still valid and available.
+> This has become the default method of accessing classes as of v0.0.9. It tends to be less error prone as the first line is always the same `h componentName,`. The former way of wrapping the component in `hh` is still valid and available. [Find out more here.](https://github.com/jhessin/react-hyperscript-helpers)
 
 ```coffeescript
 render: ->
