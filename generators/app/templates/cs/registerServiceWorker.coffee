@@ -24,18 +24,20 @@ export default ->
     if publicUrl.origin isnt window.location.origin
       # Our service worker won't work if PUBLIC_URL is on a different origin
       # from what our page is served on. This might happen if a CDN is used to
-      # serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
+      # serve assets; see
+      # https://github.com/facebookincubator/create-react-app/issues/2374
       return null
-    window.addEventListener('load', =>
+    window.addEventListener('load', ->
       swUrl = "#{process.env.PUBLIC_URL}/service-worker.js"
 
       if isLocalhost
-        # This is running on localhost. Lets check if a service worker still exists or not.
+        # This is running on localhost.
+        # Lets check if a service worker still exists or not.
         checkValidServiceWorker swUrl
 
         # Add some additional logging to localhost, pointing developers to the
         # service worker/PWA documentation.
-        navigator.serviceWorker.ready.then =>
+        navigator.serviceWorker.ready.then ->
           console.log(
             'This web app is being served cache-first by a
             service  worker. To learn more,
@@ -49,10 +51,10 @@ export default ->
 registerValidSW = (swUrl) ->
   navigator.serviceWorker
     .register swUrl
-    .then (registration) =>
-      registration.onupdatefound = =>
+    .then (registration) ->
+      registration.onupdatefound = ->
         installingWorker = registration.installing
-        installingWorker.onstatechange = =>
+        installingWorker.onstatechange = ->
           if installingWorker.state is 'installed'
             if navigator.serviceWorker.controller
               # At this point, the old content will have been purged and
@@ -65,30 +67,31 @@ registerValidSW = (swUrl) ->
               # It's the perfect time to display a
               # "Content is cached for offline use." message.
               console.log 'Content is cached for offline use.'
-    .catch (error) =>
+    .catch (error) ->
       console.error 'Error during service worker registration: ', error
 
 checkValidServiceWorker = (swUrl) ->
   # Check if the service worker can be found. If it can't reload the page.
   fetch swUrl
-    .then (response) =>
+    .then (response) ->
       # Ensure service worker exists, and that we really are getting a JS file.
       if (
         response.status is 404 or
         response.headers.get('content-type').indexOf('javascript') is -1
       )
         # No service worker found. Probably a different app. Reload the page.
-        navigator.serviceWorker.ready.then (registration) =>
-          registration.unregister().then =>
+        navigator.serviceWorker.ready.then (registration) ->
+          registration.unregister().then ->
             window.location.reload()
       else
         # Service worker found. Proceed as normal.
         registerValidSW swUrl
-    .catch =>
-      console.log 'No internet connection found. App is running in offline mode.'
+    .catch ->
+      console.log 'No internet connection found.
+        App is running in offline mode.'
 
 export unregister = ->
   if 'serviceWorker' of navigator
-    navigator.serviceWorker.ready.then (registration) =>
+    navigator.serviceWorker.ready.then (registration) ->
       registration.unregister()
 

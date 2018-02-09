@@ -62,6 +62,13 @@ module.exports = class extends Generator {
 
     this.spawnCommandSync('create-react-app', [this.props.appname]);
 
+    this.log(chalk.blue('copying the react starter files into your cs directory...'));
+    this.fs.copy(
+      this.destinationPath(this.props.appname + '/src/**/*.!(js)'),
+      this.destinationPath(this.props.appname + '/cs')
+    );
+    this.log(chalk.green('DONE!'));
+
     this.log(chalk.blue('copying coffeescript starter files...'));
     this.fs.copy(
       this.templatePath('cs'),

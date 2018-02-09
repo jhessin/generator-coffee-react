@@ -4,7 +4,7 @@
 import { Component } from 'react'
 # import { PropTypes } from 'prop-types'
 
-import { div, p } from '@jhessin/react-hyperscript-helpers'
+import { h } from '@jhessin/react-hyperscript-helpers'
 
 class <%=componentName%> extends Component
   @propTypes: {}
@@ -12,8 +12,10 @@ class <%=componentName%> extends Component
   state: {}
 
   render: ->
-    div ".someClass",
-      p ".App-intro",
-        'This is the <%= componentName %> component!'
+    h 'div',
+      { @props... }
+      @props.children
+      "This is the <%=componentName%> component"
+
 
 export { <%=componentName%> }
