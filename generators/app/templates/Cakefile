@@ -106,7 +106,23 @@ start = (callback) ->
   react.on 'exit', (code) ->
     callback?() if code is 0
 
-task 'build', 'Build src/ from cs/', ->
-  build()
+brew = (callback) ->
+  rm dest
+  unless fs.existsSync dest
+    fs.mkdirSync dest
+  copyDecaf src
+  watchDecaf src
+
+  # start watching coffeescripts
+  coffee = spawn 'coffee', ['-cbw', '-o', dest, src]
+  coffee.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  coffee.stdout.on 'data', (data) ->
+    console.log data.toString()
+  coffee.on 'exit', (code) ->
+    callback?() if code is 0
+
+task 'brew', 'compiling coffee files only', -> brew()
+task 'build', 'Build src/ from cs/', -> build()
 task 'start', 'Watch src/ and compile into cs/', ->
   start()
