@@ -7,4 +7,4 @@ it 'renders without crashing', ->
   div = document.createElement 'div'
   ReactDOM.render h(App), div
   ReactDOM.unmountComponentAtNode div
-  return undefined
+  return
