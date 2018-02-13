@@ -5,6 +5,7 @@
 # cached resources are updated in the background.
 # To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 # This link also includes instructions on opting out of this behavior.
+# coffeelint: disable=no_debugger
 
 isLocalhost = Boolean(
   window.location.hostname is 'localhost' or
@@ -94,4 +95,3 @@ export unregister = ->
   if 'serviceWorker' of navigator
     navigator.serviceWorker.ready.then (registration) ->
       registration.unregister()
-

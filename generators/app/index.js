@@ -82,6 +82,10 @@ module.exports = class extends Generator {
 
     this.log(chalk.blue('copying some extra goodies...'));
     this.fs.copy(
+      this.templatePath('coffeelint.json'),
+      this.destinationPath('coffeelint.json')
+    );
+    this.fs.copy(
       this.templatePath('.build-tools.cson'),
       this.destinationPath('.build-tools.cson')
     );
