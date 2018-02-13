@@ -11,11 +11,9 @@ class <%=componentName%> extends Component
   @defaultProps: {}
   state: {}
 
-  render: ->
+  render: =>
     h 'div',
-      { @props... }
+      'This is the <%=componentName%> component'
       @props.children
-      "This is the <%=componentName%> component"
-
 
 export { <%=componentName%> }
