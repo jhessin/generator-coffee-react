@@ -2,12 +2,15 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const extend = require('deep-extend');
 
 const DEFAULT_PATH = 'cs/components';
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
+
+    this.option('phaser');
 
     this.argument('componentName', { type: String, required: false });
 
@@ -29,7 +32,7 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'componentName',
         message: 'Name of component?',
-        default: this.options.componentName || 'MyComponent'
+        default: this.options.phaser ? 'Game' : 'MyComponent'
       },
       {
         type: 'input',
@@ -45,13 +48,34 @@ module.exports = class extends Generator {
   writing() {
     this.log(yosay(`Creating  ${chalk.red(this.props.componentName)}`));
 
+    if (this.options.phaser) {
+      let pkg = this.fs.readJSON(this.destinationPath('package.json'));
+      extend(pkg, {
+        dependencies: {
+          'phaser-ce': '^2.10.0'
+        }
+      });
+
+      this.spawnCommandSync('rm', ['package.json']);
+
+      this.fs.writeJSON(this.destinationPath('package.json'), pkg);
+    }
+
     this.destinationRoot(this.destinationPath(this.props.path));
 
-    this.fs.copyTpl(
-      this.templatePath('Component.coffee'),
-      this.destinationPath(this.props.componentName + '.coffee'),
-      this.props
-    );
+    if (this.options.phaser) {
+      this.fs.copyTpl(
+        this.templatePath('Game.coffee'),
+        this.destinationPath(this.props.componentName + '.coffee')
+      );
+      this.fs.copy(this.templatePath('states'), this.destinationPath('states'));
+    } else {
+      this.fs.copyTpl(
+        this.templatePath('Component.coffee'),
+        this.destinationPath(this.props.componentName + '.coffee'),
+        this.props
+      );
+    }
 
     if (this.fs.exists('index.coffee')) {
       this.log(chalk.green('Adding to index.coffee file. Please confirm...'));
@@ -65,6 +89,21 @@ module.exports = class extends Generator {
         this.destinationPath('index.coffee'),
         this.props
       );
+    }
+  }
+
+  install() {
+    if (this.options.phaser) {
+      this.log(chalk.blue('installing dependencies...'));
+
+      this.yarnInstall().then(error => {
+        if (error) {
+          this.npmInstall().then(() => {
+            if (error) this.log(chalk.red(error));
+            else this.log(chalk.green('ALL DONE! Get Cracking!'));
+          });
+        } else this.log(chalk.green('ALL DONE! Get Cracking!'));
+      });
     }
   }
 };

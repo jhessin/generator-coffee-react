@@ -51,11 +51,11 @@
   },
   "missing_fat_arrows": {
     "level": "error",
-    "is_strict": true
+    "is_strict": false
   },
   "newlines_after_classes": {
     "value": 1,
-    "level": "error"
+    "level": "ignore"
   },
   "no_backticks": {
     "level": "error"
