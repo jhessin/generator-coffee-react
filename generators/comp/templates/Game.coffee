@@ -40,7 +40,7 @@ class GameComponent extends Component
     @game = new Game()
 
   render: ->
-    h 'div',
+    h 'div', { @props... },
       id: 'game'
 
 export { GameComponent as <%=compnonentName%> }
