@@ -109,6 +109,30 @@ render: ->
     h LibraryComponent
 ```
 
+> ## NEW
+
+> I just added the option to generate a scaffolding to include a phaser game in your page!
+> Just do this:
+
+> ```bash
+> yarn comp Game --phaser
+> ```
+
+> Then you can do this:
+
+> ```coffeescript
+> import { Game } from './components'
+> ```
+
+> and in your render method:
+>
+> ```coffeescript
+> render: ->
+>   h Game
+> ```
+>
+> You can place it anywhere on your page!
+
 There is also a similar method of adding a controller model with all the same options:
 
 ```bash

@@ -43,4 +43,4 @@ class GameComponent extends Component
     h 'div',
       id: 'game'
 
-export { GameComponent as Game }
+export { GameComponent as <%=compnonentName%> }
