@@ -1,3 +1,6 @@
+###       eslint-disable        ###
+### Required for React's Linter ###
+###*****************************###
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
