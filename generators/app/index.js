@@ -106,10 +106,10 @@ module.exports = class extends Generator {
   install() {
     this.log(chalk.blue('installing dependencies...'));
 
-    this.yarnInstall().then(error => {
-      if (error) {
-        this.npmInstall().then(() => {
-          if (error) this.log(chalk.red(error));
+    this.yarnInstall().then(yarnError => {
+      if (yarnError) {
+        this.npmInstall().then(npmError => {
+          if (npmError) this.log(chalk.red(npmError));
           else this.log(chalk.green('ALL DONE! Get Cracking!'));
         });
       } else this.log(chalk.green('ALL DONE! Get Cracking!'));
