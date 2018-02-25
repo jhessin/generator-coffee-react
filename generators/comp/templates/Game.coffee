@@ -1,7 +1,8 @@
-###   eslint-disable import/first   ###
-###         global Phaser           ###
-# ^^^ Required for React's Linter ^^^ #
-###^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^###
+###       eslint-disable        ###
+### Required for React's Linter ###
+###       global Phaser         ###
+### *** Required for Phaser *** ###
+###*****************************###
 window.PIXI = require('phaser-ce/build/custom/pixi')
 window.p2 = require('phaser-ce/build/custom/p2')
 window.Phaser = require('phaser-ce/build/custom/phaser-split')

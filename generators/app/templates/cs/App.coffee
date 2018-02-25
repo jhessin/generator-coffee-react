@@ -1,6 +1,6 @@
-###   eslint-disable import/first   ###
-# ^^^ Required for React's Linter ^^^ #
-###^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^###
+###       eslint-disable        ###
+### Required for React's Linter ###
+###*****************************###
 import { Component } from 'react'
 # import { PropTypes } from 'prop-types'
 import { h } from '@jhessin/react-hyperscript-helpers'
