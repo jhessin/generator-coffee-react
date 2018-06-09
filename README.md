@@ -1,5 +1,6 @@
 # generator-coffee-react [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
+## NOTE - This project is no longer maintained. You should try [generator-coffee-mithril](https://github.com/jhessin/generator-coffee-mithril) for a much smoother flow.
 > A simple project using create-react-app, coffeescript, and a custom version of react-hyperscript-helpers.
 
 # Table of Contents
